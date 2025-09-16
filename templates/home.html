@@ -1,5 +1,11 @@
 {% extends 'base.html' %} {% block title %}HOME{% endblock %} {% block content %}
 <div>
-    <h1>HOME PAGE TEMPLATE</h1>
+    <h1>This is a demo application for the Quotes API</h1>
+    <h2>Quick Navigation</h2>
+    <a href='/admin/'>Admin Page</a>
+    <a href={% url 'quotes:quotes-health' %}>Health Check</a>
+    <a href={% url 'quotes:quotes-docs' %}>Swagger Docs</a>
+    <a href={% url 'quotes:quotes-demo' %}>Demo UI</a>
+    <a href={% url 'quotes:quotes-random' %}>API View (json)</a>
 </div>
 {% endblock %}
