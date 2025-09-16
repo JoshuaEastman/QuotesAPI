@@ -2,6 +2,8 @@
 
 A tiny, production‑style demo that shows clean Django/DRF patterns, OpenAPI docs, and a minimal Tailwind UI.
 
+> This is a demo application not designed for deployment.
+
 ---
 
 ## Quick Links (when running locally)
