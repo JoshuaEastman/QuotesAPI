@@ -2,6 +2,8 @@
 
 A tiny, production‑style demo that shows clean Django/DRF patterns, OpenAPI docs, and a minimal Tailwind UI.
 
+Live version: https://joshuaeastman.dev/quotes/v1/random
+
 > This is a demo application not designed for deployment.
 
 ---
