@@ -1,11 +1,82 @@
-{% extends 'base.html' %} {% block title %}HOME{% endblock %} {% block content %}
-<div>
-    <h1>This is a demo application for the Quotes API</h1>
-    <h2>Quick Navigation</h2>
-    <a href='/admin/'>Admin Page</a>
-    <a href={% url 'quotes:quotes-health' %}>Health Check</a>
-    <a href={% url 'quotes:quotes-docs' %}>Swagger Docs</a>
-    <a href={% url 'quotes:quotes-demo' %}>Demo UI</a>
-    <a href={% url 'quotes:quotes-random' %}>API View (json)</a>
-</div>
+{% extends "base.html" %} {% block title %}Quotes API · Demo{% endblock %} {% block content %}
+<section class="max-w-5xl mx-auto px-4 py-10">
+    <!-- Hero -->
+    <header class="mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Quotes API · Demo</h1>
+        <p class="mt-2 text-base-content/70">A minimal Django/DRF project showcasing clean API design, docs, and a tiny demo UI.</p>
+    </header>
+
+    <!-- Quick Navigation -->
+    <div class="mb-6 flex items-center justify-between gap-4">
+        <h2 class="text-xl font-semibold">Quick Navigation</h2>
+        <span class="badge badge-outline">v1</span>
+    </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- Admin -->
+        <a href="/admin/" class="card bg-base-200/60 border border-base-300 hover:border-primary transition-colors">
+            <div class="card-body">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl" aria-hidden="true">🛠️</span>
+                    <h3 class="card-title text-lg">Admin</h3>
+                </div>
+                <p class="text-sm text-base-content/70">Manage quotes and tags.</p>
+            </div>
+        </a>
+
+        <!-- Health -->
+        <a href="{% url 'quotes:quotes-health' %}" class="card bg-base-200/60 border border-base-300 hover:border-primary transition-colors">
+            <div class="card-body">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl" aria-hidden="true">💚</span>
+                    <h3 class="card-title text-lg">Health Check</h3>
+                </div>
+                <p class="text-sm text-base-content/70">Ping endpoint for uptime checks.</p>
+            </div>
+        </a>
+
+        <!-- Swagger Docs -->
+        <a href="{% url 'quotes:quotes-docs' %}" class="card bg-base-200/60 border border-base-300 hover:border-primary transition-colors">
+            <div class="card-body">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl" aria-hidden="true">📖</span>
+                    <h3 class="card-title text-lg">API Docs</h3>
+                </div>
+                <p class="text-sm text-base-content/70">OpenAPI/Swagger UI.</p>
+            </div>
+        </a>
+
+        <!-- Demo UI -->
+        <a href="{% url 'quotes:quotes-demo' %}" class="card bg-base-200/60 border border-base-300 hover:border-primary transition-colors">
+            <div class="card-body">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl" aria-hidden="true">🧪</span>
+                    <h3 class="card-title text-lg">Demo UI</h3>
+                </div>
+                <p class="text-sm text-base-content/70">Try the API in a simple interface.</p>
+            </div>
+        </a>
+
+        <!-- JSON View -->
+        <a href="{% url 'quotes:quotes-random' %}" class="card bg-base-200/60 border border-base-300 hover:border-primary transition-colors">
+            <div class="card-body">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl" aria-hidden="true">🧩</span>
+                    <h3 class="card-title text-lg">Random Quote (JSON)</h3>
+                </div>
+                <p class="text-sm text-base-content/70">Direct API response.</p>
+            </div>
+        </a>
+    </div>
+
+    <!-- How to Use -->
+    <div class="mt-10">
+        <h2 class="text-xl font-semibold mb-3">How to Use</h2>
+        <div class="rounded-xl bg-base-200/60 border border-base-300 p-4">
+            <p class="text-sm text-base-content/70 mb-3">Fetch a random quote from the API:</p>
+            <pre class="mockup-code overflow-x-auto text-sm p-2"><code>GET localhost:8000/quotes/v1/random</code></pre>
+            <p class="text-xs text-base-content/60 mt-2">Tip: Use your browser or <kbd class="kbd kbd-sm">curl</kbd> to explore the endpoint quickly.</p>
+        </div>
+    </div>
+</section>
 {% endblock %}
