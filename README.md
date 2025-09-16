@@ -22,7 +22,7 @@ A tiny, production‑style demo that shows clean Django/DRF patterns, OpenAPI do
 
 * **Python** ≥ 3.13
 * **Node.js & npm** (for Tailwind build via `django-tailwind`)
-* (Recommended) **virtual environment**: https://docs.python.org/3/library/venv.html
+* (Recommended) **virtual environment**
 
 ---
 
