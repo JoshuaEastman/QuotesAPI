@@ -9,9 +9,9 @@ A tiny, production‑style demo that shows clean Django/DRF patterns, OpenAPI do
 ## Quick Links (when running locally)
 
 * **Admin:** http://localhost:8000/admin/
-* **Docs (Swagger UI):** http://localhost:8000/quotes/docs/)
-* **Demo UI:** [http://localhost:8000/quotes/demo/](http://localhost:8000/quotes/demo/
-* **Health:** (http://localhost:8000/quotes/health/
+* **Docs (Swagger UI):** http://localhost:8000/quotes/docs/
+* **Demo UI:** http://localhost:8000/quotes/demo/
+* **Health:** http://localhost:8000/quotes/health/
 * **Random Quote (JSON):** http://localhost:8000/quotes/v1/random/
 
 > Paths may differ slightly if you’ve customized URLs; these are the defaults in this repo.
@@ -84,7 +84,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-Open [http://localhost:8000/](http://localhost:8000/) and use the **Quick Links** above.
+Open http://localhost:8000/ and use the **Quick Links** above.
 
 ---
 
