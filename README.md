@@ -104,11 +104,19 @@ Returns a single random quote.
 
 ```json
 {
-  "id": 12,
-  "text": "Simplicity is the soul of efficiency.",
-  "author": "Austin Freeman",
-  "tags": ["inspirational"],
-  "language": "en"
+  "type": "any",
+  "count": 1,
+  "results": [
+    {
+      "id": 13,
+      "text": "Do not go where the path may lead, go instead where there is no path and leave a trail.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "inspirational",
+      "year": 1851,
+      "language": "English",
+      "source": "Essays"
+    }
+  ]
 }
 ```
 
