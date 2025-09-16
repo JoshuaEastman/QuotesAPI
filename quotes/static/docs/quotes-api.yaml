@@ -1,0 +1,129 @@
+openapi: 3.1.1
+info:
+  title: Quotes API
+  version: 0.1.0
+  description: Public read-only; quotes are curated via admin; the API returns random quotes with optional tag filtering.
+servers:
+  - url: https://joshuaeastman.dev/quotes
+    description: Production
+
+tags:
+  - name: Health
+  - name: Quotes
+
+paths:
+  /v1/health/:
+    get:
+      summary: Health check
+      description: Simple OK to check the pipeline
+      tags: [Health]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: ok
+
+  /v1/random/:
+    get:
+      summary: Get a quote.
+      description: Get a single, random quote from the database.
+      tags: [Quotes]
+      parameters:
+        - name: tag
+          in: query
+          schema: { type: string }
+          description: Optional category filter (e.g., "inspirational"). If omitted, a quote is chosen from any tag.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RandomResponse'
+              examples:
+                sample:
+                  summary: Example random inspirational quote
+                  value:
+                    type: inspirational
+                    count: 1
+                    results:
+                      - id: 42
+                        text: 'Stay hungry, stay foolish.'
+                        author: 'Steve Jobs'
+                        tag: 'inspirational'
+                        language: 'en'
+                        source: 'Stanford Commencement, 2005'
+        '404': { $ref: '#/components/responses/NotFound' }
+        '429': { $ref: '#/components/responses/TooManyRequests' }
+
+components:
+  # Error Codes
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error'}
+          examples:
+            no_match:
+              summary: No quote for this given tag
+              value:
+                detail: "No quote found for tag 'x'."
+    TooManyRequests:
+      description: Too many requests
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+          examples:
+            throttled:
+              summary: Example throttle responses
+              value:
+                detail: 'Request was throttled. Expected available in 30 seconds.'
+
+
+  # Object Schemas
+  schemas:
+    Quote:
+      type: object
+      properties:
+        id: { type: integer }
+        text: { type: string }
+        author: { type: string }
+        tag: { type: string }
+        year: { type: [integer, 'null'] }
+        language: { type: [string, 'null'] }
+        source: { type: [string, 'null'] }
+      required: [id, text, author, tag]
+
+    RandomResponse:
+      type: object
+      required: [type, count, results]
+      properties:
+        type:
+          type: string
+          description: The tag used or 'any' if none provided.
+          example: inspirational
+        count:
+          type: integer
+          example: 1
+        results:
+          type: array
+          items: { $ref: '#/components/schemas/Quote'}
+
+    # Shared error schema
+    Error:
+      type: object
+      properties:
+        detail:
+          oneOf:
+            - type: string
+            - type: array
+              items: { type: string}
+      required: [detail]
+      additionalProperties: false
